@@ -1,0 +1,37 @@
+Controls for "Light Game" as of 6/8/2015:
+
+
+Keyboard + Mouse
+----------------
+
+Mouse 			= Look around
+
+Right Mouse Click 	= Shoot active weapon
+
+WASD 			= Player movement
+
+Space Bar		= Jump
+
+Left Shift (hold)	= Walk
+
+E			= Switch active weapon
+
+F 			= Turn flashlight on/off
+
+
+Xbox360 Controller
+------------------
+
+Right Analog Stick	= Look around
+
+Right Trigger	 	= Shoot active weapon
+
+Left Analog Stick	= Player movement
+
+A	 		= Jump
+
+X			= Toggle walking/running
+
+B			= Switch active weapon
+
+Y 			= Turn flashlight on/off
