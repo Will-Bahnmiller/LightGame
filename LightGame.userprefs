@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actors\PlayerController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\BeamLightController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="74" Column="30" />
-      <File FileName="Assets\Scripts\Weapons\MouseLightController.cs" Line="15" Column="46" />
+      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="23" Column="3" />
+      <File FileName="Assets\Scripts\Weapons\BeamLightController.cs" Line="56" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

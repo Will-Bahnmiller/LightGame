@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Actors\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Environment\CameraController.cs" />
      <Compile Include="Assets\Scripts\Environment\DoorController.cs" />
+     <Compile Include="Assets\Scripts\Environment\LampController.cs" />
      <Compile Include="Assets\Scripts\Environment\SignalLightController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\GameController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\PositionTracker.cs" />
@@ -60,9 +61,6 @@
      <Compile Include="Assets\Scripts\Weapons\FlameLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FreezeLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FreezeLightCoreController.cs" />
-     <Compile Include="Assets\Scripts\Weapons\MouseLightController.cs" />
-     <Compile Include="Assets\Scripts\Weapons\OldBeamLightController.cs" />
-     <Compile Include="Assets\Scripts\Weapons\TrailLightController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
  </Reference>

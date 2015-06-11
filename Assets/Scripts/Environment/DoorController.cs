@@ -51,13 +51,24 @@ public class DoorController : MonoBehaviour {
 		// Keep track of player position
 		playerPos = positionTracker.playerPosition;
 	
+		Debug.Log (Mathf.Abs(transform.position.x - playerPos.x));
 		// If this door is visible to the player, limit camera movement
 		if (renderer.isVisible) {
 			if (gameObject.tag == "UpDownDoor") {
-				cameraController.upDownDoorVisible = true;
+				if (Mathf.Abs(transform.position.y - playerPos.y) <= 9f) {
+					cameraController.upDownDoorVisible = true;
+				}
+				else {
+					cameraController.upDownDoorVisible = false;
+				}
 			}
 			if (gameObject.tag == "LeftRightDoor") {
-				cameraController.leftRightDoorVisible = true;
+				if (Mathf.Abs(transform.position.x - playerPos.x) <= 18.2f) {
+					cameraController.leftRightDoorVisible = true;
+				}
+				else {
+					cameraController.leftRightDoorVisible = false;
+				}
 			}
 		}
 		else {

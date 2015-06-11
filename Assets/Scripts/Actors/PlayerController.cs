@@ -2,16 +2,15 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-
-	public GameObject lightTrail;
-	public float trailRate, jumpHeight, moveSpeed;
+	
+	public float jumpHeight, moveSpeed;
 	public bool canMove, hasMouseLight, facingRight;
 	public bool doorUp, doorDown, doorRight, doorLeft;
 
 	private GameController gc;
 	private PositionTracker positionTracker;
 	private GameObject doorGoingThrough;
-	private float inputSpeed, trailTimer, normalSpeed;
+	private float inputSpeed, normalSpeed;
 	private bool isJumping;
 	private Vector3 temp, mousePos;
 
@@ -21,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 		// Initialize data
 		doorUp = false;  doorDown = false;  doorRight = false;  doorLeft = false;
 		canMove = true;  isJumping = true;  facingRight = true;
-		trailTimer = trailRate;  normalSpeed = moveSpeed;
+		normalSpeed = moveSpeed;
 
 		// Once player is loaded, enable tracking of player
 		gc = Camera.main.GetComponent<GameController>();
@@ -45,13 +44,6 @@ public class PlayerController : MonoBehaviour {
 		// Allow player movement at the start
 		if (Vector3.Distance(transform.position, Vector3.zero) < 2f) {
 			canMove = true;
-		}
-
-		// Drop a light trail at a constant rate
-		trailTimer = Mathf.Min(trailRate, trailTimer + Time.deltaTime);
-		if (trailTimer == trailRate) {
-			Instantiate(lightTrail, transform.position, Quaternion.identity);
-			trailTimer = 0f;
 		}
 
 		// Player movement

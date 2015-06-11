@@ -21,4 +21,16 @@ public class GameController : MonoBehaviour {
 		}
 
 	}
-}
+
+
+	public bool canTakeDamage(string tag) {
+
+		// Determine if the object in question can take damage
+		if (tag == "Lamp") {
+			return true;
+		}
+
+		return false;
+	}
+
+} // end of GameController.cs

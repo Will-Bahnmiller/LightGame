@@ -5,6 +5,7 @@ public class FreezeLightCoreController : MonoBehaviour {
 	
 	public float missileSpeed, maxDist, damage, spinRate;
 
+	private GameController gc;
 	private PositionTracker positionTracker;
 	private Vector3 direction, playerPos;
 	private float angle;
@@ -13,6 +14,7 @@ public class FreezeLightCoreController : MonoBehaviour {
 	void Start() {
 
 		// Initialize data
+		gc = Camera.main.GetComponent<GameController>();
 		positionTracker = Camera.main.GetComponent<PositionTracker>();
 		playerPos = positionTracker.playerPosition;
 		direction = positionTracker.mouseDirection;
@@ -38,12 +40,15 @@ public class FreezeLightCoreController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision coll) {
+	void OnTriggerEnter(Collider coll) {
 
 		Debug.Log ("Freeze core collided wtih " + coll.transform.name);
 
-		// If enemy, take damage and freeze/slow
-
+		// If enemy, damage and apply slow
+		if (gc.canTakeDamage(coll.gameObject.tag)) {
+			coll.gameObject.SendMessage("TakeDamage", damage);
+			//coll.gameObject.SendMessage("ApplySlow");
+		}
 
 		// Destroy this light
 		Destroy(transform.gameObject);

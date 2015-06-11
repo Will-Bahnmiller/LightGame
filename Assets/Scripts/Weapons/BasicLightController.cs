@@ -5,6 +5,7 @@ public class BasicLightController : MonoBehaviour {
 	
 	public float missileSpeed, maxDist, damage;
 
+	private GameController gc;
 	private PositionTracker positionTracker;
 	private Vector3 direction, playerPos;
 
@@ -12,6 +13,7 @@ public class BasicLightController : MonoBehaviour {
 	void Start() {
 
 		// Initialize data
+		gc = Camera.main.GetComponent<GameController>();
 		positionTracker = Camera.main.GetComponent<PositionTracker>();
 		playerPos = positionTracker.playerPosition;
 		direction = positionTracker.mouseDirection;
@@ -30,12 +32,14 @@ public class BasicLightController : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter(Collision coll) {
+	void OnTriggerEnter(Collider coll) {
 
 		Debug.Log("Basic collided with " + coll.transform.name);
 
 		// If enemy, damage
-
+		if (gc.canTakeDamage(coll.gameObject.tag)) {
+			coll.gameObject.SendMessage("TakeDamage", damage);
+		}
 
 		// Destroy this light when colliding
 		Destroy(transform.gameObject);

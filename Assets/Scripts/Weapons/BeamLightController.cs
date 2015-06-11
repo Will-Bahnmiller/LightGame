@@ -48,16 +48,20 @@ public class BeamLightController : MonoBehaviour {
 	} // end of Update()
 
 
-	void OnCollisionEnter(Collision coll) {
+	void OnTriggerEnter(Collider coll) {
 
 		Debug.Log ("Beam collided wtih " + coll.transform.name);
 
-		// If enemy, take damage
-
+		// If enemy, damage
+		if (gc.canTakeDamage(coll.gameObject.tag)) {
+			coll.gameObject.SendMessage("TakeDamage", damage);
+		}
 
 		// Destroy this light and all that came before it
 		for (int i = 0; i < allBeams.Length; i++) {
-			Destroy(allBeams[i].transform.gameObject);
+			if (allBeams[i] != null) {
+				Destroy(allBeams[i].transform.gameObject);
+			}
 		}
 		Destroy(transform.gameObject);
 
