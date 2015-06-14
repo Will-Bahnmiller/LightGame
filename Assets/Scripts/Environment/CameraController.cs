@@ -6,6 +6,8 @@ public class CameraController : MonoBehaviour {
 	public float cameraSpeed;
 	public bool upDownDoorVisible, leftRightDoorVisible, panCamera;
 
+	private GameObject closestUDdoor, closestLRdoor;
+	private GameObject[] LRdoors, UDdoors;
 	private PositionTracker positionTracker;
 	private Vector3 target, playerPos, upPan, downPan, rightPan, leftPan;
 	private float height, width;
@@ -18,10 +20,15 @@ public class CameraController : MonoBehaviour {
 		positionTracker = Camera.main.GetComponent<PositionTracker>();
 		upDownDoorVisible = false;  leftRightDoorVisible = false;
 		height = 20f;  width = 36.5f;
+		LRdoors = GameObject.FindGameObjectsWithTag("LeftRightDoor");
+		UDdoors = GameObject.FindGameObjectsWithTag("UpDownDoor");
 	}
 
 
 	void Update () {
+
+		// Keep track of the closest door
+		FindClosestDoors();
 
 		// Normally, camera follows the player
 		if (!panCamera) {
@@ -48,9 +55,12 @@ public class CameraController : MonoBehaviour {
 		// Player moved through a door
 		else {
 
-			PlayerController pc = positionTracker.player.GetComponent<PlayerController>();
+			// Reset flags
+			upDownDoorVisible = false;
+			leftRightDoorVisible = false;
 
 			// Pan the camera to follow where the player went
+			PlayerController pc = positionTracker.player.GetComponent<PlayerController>();
 			if (pc.doorUp) {
 				transform.position = Vector3.Lerp(transform.position, upPan, Time.deltaTime * cameraSpeed);
 			}
@@ -78,5 +88,40 @@ public class CameraController : MonoBehaviour {
 		}
 
 	} // end of Update()
+
+
+	void FindClosestDoors() {
+
+		GameObject temp1 = null, temp2 = null;
+
+		// Search for closest left-right door
+		foreach (GameObject d in LRdoors) {
+			if (temp1 == null || Vector3.Distance(transform.position, temp1.transform.position) >
+			    						Vector3.Distance(transform.position, d.transform.position)) {
+				temp1 = d;
+			}
+		}
+
+		// Search for closest up-down door
+		foreach (GameObject d in UDdoors) {
+			if (temp2 == null || Vector3.Distance(transform.position, temp2.transform.position) >
+			    Vector3.Distance(transform.position, d.transform.position)) {
+				temp2 = d;
+			}
+		}
+
+		// Assign doors
+		closestLRdoor = temp1;
+		closestUDdoor = temp2;
+
+	} // end of FindClosestDoors()
+
+
+	public GameObject getClosestLRdoor() {
+		return closestLRdoor;
+	}
+	public GameObject getClosestUPdoor() {
+		return closestUDdoor;
+	}
 
 } // end of CameraController.cs

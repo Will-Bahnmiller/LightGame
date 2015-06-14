@@ -31,16 +31,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
-		// Keep player upright
-		Quaternion upright = transform.rotation;
-		upright.z = 0f;
-		transform.rotation = upright;
-		Vector3 upright2 = transform.position;
-		upright2.z = 0f;
-		transform.position = upright2;
-
-		Vector3 temp = transform.position;
-
 		// Allow player movement at the start
 		if (Vector3.Distance(transform.position, Vector3.zero) < 2f) {
 			canMove = true;
@@ -61,9 +51,7 @@ public class PlayerController : MonoBehaviour {
 				if (Input.GetAxis("X Axis Left") > 0f) { facingRight = true; }
 				if (Input.GetAxis("X Axis Left") < 0f) { facingRight = false; }
 			}
-			temp = transform.position;
-			temp.x += moveSpeed * inputSpeed * Time.deltaTime;
-			transform.position = temp;
+			transform.Translate(Vector3.right * inputSpeed * moveSpeed * Time.deltaTime);
 
 			// Crouch
 			if (!gc.controllerScheme) {

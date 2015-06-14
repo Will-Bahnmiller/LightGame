@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DoorController : MonoBehaviour {
 
-	public GameObject doorLight;
+	public GameObject doorLight, lampToOpen;
 	public Vector3 pos1, pos2;
 	public bool isLocked;
 
@@ -48,12 +48,24 @@ public class DoorController : MonoBehaviour {
 
 	void Update () {
 
+		// Determine if locked or not
+		if (lampToOpen != null) {
+			if (lampToOpen.GetComponent<LampController>().isFullyLit()) {
+				isLocked = false;
+			}
+			else {
+				isLocked = true;
+			}
+		}
+		else  {
+			isLocked = false;
+		}
+
 		// Keep track of player position
 		playerPos = positionTracker.playerPosition;
 	
-		Debug.Log (Mathf.Abs(transform.position.x - playerPos.x));
 		// If this door is visible to the player, limit camera movement
-		if (renderer.isVisible) {
+		if ( renderer.isVisible && isClosestDoor() ) {
 			if (gameObject.tag == "UpDownDoor") {
 				if (Mathf.Abs(transform.position.y - playerPos.y) <= 9f) {
 					cameraController.upDownDoorVisible = true;
@@ -72,11 +84,13 @@ public class DoorController : MonoBehaviour {
 			}
 		}
 		else {
-			if (gameObject.tag == "UpDownDoor") {
-				cameraController.upDownDoorVisible = false;
-			}
-			if (gameObject.tag == "LeftRightDoor") {
-				cameraController.leftRightDoorVisible = false;
+			if (isClosestDoor()) {
+				if (gameObject.tag == "UpDownDoor") {
+					cameraController.upDownDoorVisible = false;
+				}
+				if (gameObject.tag == "LeftRightDoor") {
+					cameraController.leftRightDoorVisible = false;
+				}
 			}
 		}
 		
@@ -101,12 +115,23 @@ public class DoorController : MonoBehaviour {
 	} // end of Update()
 
 
+	bool isClosestDoor() {
+		if (transform.tag == "UpDownDoor" && cameraController.getClosestUPdoor() == gameObject) {
+			return true;
+		}
+		if (transform.tag == "LeftRightDoor" && cameraController.getClosestLRdoor() == gameObject) {
+			return true;
+		}
+		return false;
+	}
+
+
 	void OnCollisionEnter(Collision collisionInfo) {
 	
 		PlayerController pc = positionTracker.player.GetComponent<PlayerController>();
 
 		// Player goes through door
-		if (collisionInfo.gameObject.tag == "Player") {
+		if (collisionInfo.gameObject.tag == "Player" && !isLocked) {
 
 			// Player wants to go down through a door
 			if (gameObject.tag == "UpDownDoor" && playerPos.y > transform.position.y) {

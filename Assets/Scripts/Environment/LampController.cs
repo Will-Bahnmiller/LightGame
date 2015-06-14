@@ -80,4 +80,9 @@ public class LampController : MonoBehaviour {
 		myHealth = Mathf.Max (0f, myHealth - damage);
 	}
 
+
+	public bool isFullyLit() {
+		return isLit;
+	}
+
 } // end of LampController.cs
