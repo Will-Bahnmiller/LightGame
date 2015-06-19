@@ -5,7 +5,7 @@ public class ArmController : MonoBehaviour {
 	
 	public float turnSpeed, weaponCooldown;
 	public bool instantRotate, hasFlashLight, flashLightOn;
-	public GameObject basicLight, beamLight, freezeLight, flameLight, bounceLight;
+	public GameObject basicLight, beamLight, freezeLight, flameLight, bounceLight, reboundLight;
 	public int weaponCount;
 
 	private GameController gc;
@@ -119,6 +119,14 @@ public class ArmController : MonoBehaviour {
 			if (activeWeapon == 5) {
 				if (timer == weaponCooldown) {
 					missiles.Add ( Instantiate (bounceLight, transform.position, Quaternion.identity) as GameObject );
+					timer = 0f;
+				}
+			}
+
+			// Rebound weapon
+			if (activeWeapon == 6) {
+				if (timer == weaponCooldown) {
+					missiles.Add ( Instantiate (reboundLight, transform.position, Quaternion.identity) as GameObject );
 					timer = 0f;
 				}
 			}
