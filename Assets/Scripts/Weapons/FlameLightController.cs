@@ -39,7 +39,7 @@ public class FlameLightController : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter(Collider coll) {
+	void OnCollisionEnter(Collision coll) {
 
 		Debug.Log ("Flame collided wtih " + coll.transform.name);
 

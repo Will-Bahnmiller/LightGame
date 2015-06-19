@@ -48,7 +48,7 @@ public class BeamLightController : MonoBehaviour {
 	} // end of Update()
 
 
-	void OnTriggerEnter(Collider coll) {
+	void OnCollisionEnter(Collision coll) {
 
 		Debug.Log ("Beam collided wtih " + coll.transform.name);
 

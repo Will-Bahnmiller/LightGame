@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\CameraController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\BounceLightController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="32" Column="18" />
-      <File FileName="Assets\Scripts\Environment\CameraController.cs" Line="47" Column="64" />
-      <File FileName="Assets\Scripts\Environment\DoorController.cs" Line="93" Column="6" />
+      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\ArmController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\BounceLightController.cs" Line="99" Column="45" />
+      <File FileName="Assets\Scripts\Weapons\FlameLightCoreController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\FlameLightController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

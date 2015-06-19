@@ -13,7 +13,7 @@ public class FreezeLightController : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter(Collider coll) {
+	void OnCollisionEnter(Collision coll) {
 
 		Debug.Log ("child freeze collided with " + coll.transform.name);
 

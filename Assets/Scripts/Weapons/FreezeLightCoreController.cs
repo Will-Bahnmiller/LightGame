@@ -40,7 +40,7 @@ public class FreezeLightCoreController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider coll) {
+	void OnCollisionEnter(Collision coll) {
 
 		Debug.Log ("Freeze core collided wtih " + coll.transform.name);
 

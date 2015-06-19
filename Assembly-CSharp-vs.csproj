@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Weapons\BasicLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\BeamLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\BeamLightCoreController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\BounceLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FlameLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FlameLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FreezeLightController.cs" />
