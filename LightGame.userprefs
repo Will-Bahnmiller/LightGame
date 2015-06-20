@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\ReboundLightController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\ArmController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapons\ArmController.cs" Line="127" Column="28" />
-      <File FileName="Assets\Scripts\Weapons\BounceLightController.cs" Line="53" Column="3" />
-      <File FileName="Assets\Scripts\Weapons\ReboundLightController.cs" Line="6" Column="35" />
+      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="17" Column="2" />
+      <File FileName="Assets\Scripts\Weapons\ArmController.cs" Line="27" Column="58" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

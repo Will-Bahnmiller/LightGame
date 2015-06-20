@@ -3,17 +3,17 @@ using System.Collections;
 
 public class ArmController : MonoBehaviour {
 	
-	public float turnSpeed, weaponCooldown;
+	public float turnSpeed;
+	public float[] weaponCooldowns;
+	public GameObject[] missilePrefabs;
 	public bool instantRotate, hasFlashLight, flashLightOn;
-	public GameObject basicLight, beamLight, freezeLight, flameLight, bounceLight, reboundLight;
-	public int weaponCount;
 
 	private GameController gc;
 	private PositionTracker positionTracker;
 	private ArrayList missiles;
 	private bool shooted;
-	private float timer;
-	private int activeWeapon;
+	private float[] timers;
+	private int activeWeapon, weaponCount;
 		
 
 	void Start() {
@@ -23,8 +23,8 @@ public class ArmController : MonoBehaviour {
 		positionTracker = Camera.main.GetComponent<PositionTracker>();
 		flashLightOn = false;  shooted = false;
 		missiles = new ArrayList();
-		timer = weaponCooldown;
-		activeWeapon = 1;
+		timers = (float[])weaponCooldowns.Clone();
+		activeWeapon = 0;  weaponCount = missilePrefabs.Length;
 	}
 
 
@@ -47,13 +47,14 @@ public class ArmController : MonoBehaviour {
 		else {
 			if (Mathf.Abs(Input.GetAxis("Y Axis Right")) > .1f || Mathf.Abs(Input.GetAxis("X Axis Right")) > .1f) {
 				transform.rotation = Quaternion.Euler(new Vector3(Mathf.Atan2(Input.GetAxis("Y Axis Right"),
-			                                                  Input.GetAxis ("X Axis Right")) * Mathf.Rad2Deg,
-			                                          90f, 0f));
+			                                          Input.GetAxis ("X Axis Right")) * Mathf.Rad2Deg, 90f, 0f));
 			}
 		}
 
 		// Weapon cooldown
-		timer = Mathf.Min (timer + .1f, weaponCooldown);
+		for (int i = 0; i < timers.Length; i++) {
+			timers[i] = Mathf.Min (timers[i] + Time.deltaTime, weaponCooldowns[i]);
+		}
 
 		// Light on/off
 		if (!gc.controllerScheme) {
@@ -72,12 +73,12 @@ public class ArmController : MonoBehaviour {
 		// Switch weapon
 		if (!gc.controllerScheme) {
 			if (Input.GetKeyDown(KeyCode.E) && !Input.GetKey(KeyCode.Mouse0)) {
-				activeWeapon = (activeWeapon % weaponCount) + 1;
+				activeWeapon = (activeWeapon+1) % weaponCount;
 			}
 		}
 		else {
 			if (Input.GetKeyDown(KeyCode.JoystickButton1) && Input.GetAxis("Right Trigger") > -0.5f) {
-				activeWeapon = (activeWeapon % weaponCount) + 1;
+				activeWeapon = (activeWeapon+1) % weaponCount;
 			}
 		}
 
@@ -89,8 +90,14 @@ public class ArmController : MonoBehaviour {
 			// The weapon has been shot
 			shooted = true;
 
+			// Fire the missile
+			if (timers[activeWeapon] == weaponCooldowns[activeWeapon]) {
+				missiles.Add ( Instantiate (missilePrefabs[activeWeapon], transform.position, Quaternion.identity) );
+				timers[activeWeapon] = 0f;
+			}
+/*
 			// Basic weapon
-			if (activeWeapon == 1) {
+			if (activeWeapon == 0) {
 				if (timer == weaponCooldown) {
 					missiles.Add ( Instantiate (basicLight, transform.position, Quaternion.identity) as GameObject );
 					timer = 0f;
@@ -98,12 +105,12 @@ public class ArmController : MonoBehaviour {
 			}
 
 			// Beam weapon
-			if (activeWeapon == 2) {
+			if (activeWeapon == 1) {
 				missiles.Add ( Instantiate (beamLight, transform.position, Quaternion.identity) as GameObject );
 			}
 
 			// Freeze weapon
-			if (activeWeapon == 3) {
+			if (activeWeapon == 2) {
 				if (timer == weaponCooldown) {
 					missiles.Add ( Instantiate (freezeLight, transform.position, Quaternion.identity) as GameObject );
 					timer = 0f;
@@ -111,12 +118,12 @@ public class ArmController : MonoBehaviour {
 			}
 
 			// Flame weapon
-			if (activeWeapon == 4) {
+			if (activeWeapon == 3) {
 				missiles.Add ( Instantiate (flameLight, transform.position, Quaternion.identity) as GameObject );
 			}
 
 			// Bounce weapon
-			if (activeWeapon == 5) {
+			if (activeWeapon == 4) {
 				if (timer == weaponCooldown) {
 					missiles.Add ( Instantiate (bounceLight, transform.position, Quaternion.identity) as GameObject );
 					timer = 0f;
@@ -124,12 +131,12 @@ public class ArmController : MonoBehaviour {
 			}
 
 			// Rebound weapon
-			if (activeWeapon == 6) {
+			if (activeWeapon == 5) {
 				if (timer == weaponCooldown) {
 					missiles.Add ( Instantiate (reboundLight, transform.position, Quaternion.identity) as GameObject );
 					timer = 0f;
 				}
-			}
+			}*/
 
 		} // end of shoot
 
