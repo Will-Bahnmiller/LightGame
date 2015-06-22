@@ -62,7 +62,7 @@ public class ReboundLightController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 
-		Debug.Log ("Rebound collided wtih " + coll.transform.name);
+		Debug.Log ("Rebound collided with " + coll.transform.name);
 
 		// If enemy, damage
 		if (gc.canTakeDamage(coll.gameObject.tag)) {

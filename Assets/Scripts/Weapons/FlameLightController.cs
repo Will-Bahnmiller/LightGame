@@ -41,7 +41,7 @@ public class FlameLightController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 
-		Debug.Log ("Flame collided wtih " + coll.transform.name);
+		Debug.Log ("Flame collided with " + coll.transform.name);
 
 		// If enemy, damage and apply burn
 		if (gc.canTakeDamage(coll.gameObject.tag)) {

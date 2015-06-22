@@ -24,12 +24,17 @@ public class GameController : MonoBehaviour {
 
 
 	public bool canTakeDamage(string tag) {
-
-		// Determine if the object in question can take damage
 		if (tag == "Lamp") {
 			return true;
 		}
+		return false;
+	}
 
+
+	public bool isEnvironment(string tag) {
+		if (tag == "Wall" || tag == "Floor" || tag == "Lamp" || tag == "Left-Right Door" || tag == "Up-Down Door") {
+			return true;
+		}
 		return false;
 	}
 

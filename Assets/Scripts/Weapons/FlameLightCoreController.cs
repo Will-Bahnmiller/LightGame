@@ -26,10 +26,10 @@ public class FlameLightCoreController : MonoBehaviour {
 		direction = positionTracker.mouseDirection;
 
 		// Point core in mouse direction
-		transform.position = direction * 1.5f + playerPos;
+		transform.position = playerPos + direction * 1.5f;
 
 		// Continually create flame lights
-		timer = Mathf.Min (fireRate, timer + .01f);
+		timer = Mathf.Min (fireRate, timer + Time.deltaTime);
 		if (timer == fireRate) {
 			Instantiate(childPrefab, transform.position, Quaternion.identity);
 			timer = 0f;

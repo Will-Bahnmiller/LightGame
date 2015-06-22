@@ -50,7 +50,7 @@ public class BeamLightController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 
-		Debug.Log ("Beam collided wtih " + coll.transform.name);
+		Debug.Log ("Beam collided with " + coll.transform.name);
 
 		// If enemy, damage
 		if (gc.canTakeDamage(coll.gameObject.tag)) {

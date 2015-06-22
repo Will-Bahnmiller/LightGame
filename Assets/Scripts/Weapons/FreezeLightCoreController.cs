@@ -28,7 +28,7 @@ public class FreezeLightCoreController : MonoBehaviour {
 	void Update () {
 		
 		// Move light ball along given direction at given missile speed
-		transform.position = transform.position + direction * missileSpeed;
+		transform.position = transform.position + direction * missileSpeed * Time.deltaTime;
 
 		// Rotate light ball at spin rate speed
 		transform.rotation = Quaternion.Euler (0f, 0f, angle);
@@ -42,7 +42,7 @@ public class FreezeLightCoreController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 
-		Debug.Log ("Freeze core collided wtih " + coll.transform.name);
+		Debug.Log ("Freeze core collided with " + coll.transform.name);
 
 		// If enemy, damage and apply slow
 		if (gc.canTakeDamage(coll.gameObject.tag)) {

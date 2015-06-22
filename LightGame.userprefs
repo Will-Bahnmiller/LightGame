@@ -1,9 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\ArmController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\BubbleLightController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts\Weapons\ArmController.cs" Line="27" Column="58" />
+      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\ArmController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\BubbleLightCoreController.cs" Line="76" Column="22" />
+      <File FileName="Assets\Scripts\Weapons\BubbleLightController.cs" Line="39" Column="27" />
+      <File FileName="Assets\Scripts\Weapons\FreezeLightController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapons\FlameLightCoreController.cs" Line="10" Column="42" />
+      <File FileName="Assets\Scripts\Weapons\FreezeLightCoreController.cs" Line="31" Column="87" />
+      <File FileName="Assets\Scripts\Weapons\FlameLightController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

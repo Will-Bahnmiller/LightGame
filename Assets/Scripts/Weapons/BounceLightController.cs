@@ -50,7 +50,7 @@ public class BounceLightController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 		
-		Debug.Log ("Bounce collided wtih " + coll.transform.name);
+		Debug.Log ("Bounce collided with " + coll.transform.name);
 
 		// Only consider stuff after it's been alive for some time
 		if (timeAlive > .05f) {
