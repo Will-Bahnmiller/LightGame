@@ -1,5 +1,7 @@
 Controls for "Light Game" as of 6/8/2015:
 
+(The game is best played at Simple quality or lower!)
+
 
 Keyboard + Mouse
 ----------------

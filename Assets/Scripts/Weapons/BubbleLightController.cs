@@ -3,11 +3,11 @@ using System.Collections;
 
 public class BubbleLightController : MonoBehaviour {
 
-	public float duration, damage, spread, power;
+	public float duration, damage, power;
 	
 	private GameController gc;
 	private Vector3 corePos, myDirection;
-	private float angle, timer;
+	private float angle, timer, spread;
 	
 	
 	void Start() {
@@ -18,7 +18,7 @@ public class BubbleLightController : MonoBehaviour {
 		timer = 0f;
 		
 		// Provide initial position and angle
-		transform.position = corePos + new Vector3( Random.Range(-0.1f, 0.1f) , 0.5f, 0f);
+		transform.position = corePos + new Vector3( Random.Range(-0.1f, 0.1f) , 0.5f, 0.3f);
 		angle = Random.Range(-spread + 90f, spread + 90f);
 		
 		// Toss flame at this angle with some force
@@ -54,6 +54,11 @@ public class BubbleLightController : MonoBehaviour {
 		// Destroy this light
 		Destroy(transform.gameObject);
 		
+	}
+
+
+	void SetSpread(float s) {
+		spread = s;
 	}
 	
 } // end of BubbleLightController.cs

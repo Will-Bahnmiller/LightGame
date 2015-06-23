@@ -4,7 +4,7 @@ using System.Collections;
 public class BubbleLightCoreController : MonoBehaviour {
 	
 	public GameObject childPrefab;
-	public float fireRate, duration, power, damage, minIntensity, maxIntensity;
+	public float fireRate, duration, power, damage, minIntensity, maxIntensity, minSpread, maxSpread;
 
 	private GameController gc;
 	private PositionTracker positionTracker;
@@ -48,6 +48,7 @@ public class BubbleLightCoreController : MonoBehaviour {
 				// Create bubble
 				child = Instantiate(childPrefab, transform.position, Quaternion.identity) as GameObject;
 				child.transform.parent = transform;
+				child.SendMessage( "SetSpread", minSpread + (maxSpread - minSpread) * timeAlive / duration );
 				timer = 0f;
 
 				// Decrease intensity
