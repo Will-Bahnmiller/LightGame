@@ -9,7 +9,7 @@ public class BeamLightController : MonoBehaviour {
 	private PositionTracker positionTracker;
 	private GameObject[] allBeams;
 	private Vector3 playerPos, myDirection;
-	private float myTime;
+	private float myTime, pos;
 
 
 	void Start() {
@@ -27,9 +27,11 @@ public class BeamLightController : MonoBehaviour {
 		// Update information
 		playerPos = positionTracker.playerPosition;
 		myDirection = positionTracker.mouseDirection;
+		Vector3 offset = new Vector3(pos * Mathf.Sin(positionTracker.angle * Mathf.Deg2Rad),
+		                             pos * Mathf.Cos(positionTracker.angle * Mathf.Deg2Rad), 0f);
 
 		// Update position based on current angle
-		transform.position = myTime * myDirection + playerPos;
+		transform.position = myTime * myDirection + playerPos + offset;
 		myTime += power * Time.deltaTime;
 
 		// If missile travels a certain distance, kill it
@@ -65,6 +67,11 @@ public class BeamLightController : MonoBehaviour {
 		}
 		Destroy(transform.gameObject);
 
+	}
+
+
+	void SetPos(float p) {
+		pos = p;
 	}
 
 } // end of BeamLightController.cs
