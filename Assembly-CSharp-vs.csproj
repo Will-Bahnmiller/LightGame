@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Environment\DoorController.cs" />
      <Compile Include="Assets\Scripts\Environment\LampController.cs" />
      <Compile Include="Assets\Scripts\Environment\SignalLightController.cs" />
+     <Compile Include="Assets\Scripts\Environment\TrailLightController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\GameController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\PositionTracker.cs" />
      <Compile Include="Assets\Scripts\Weapons\ArmController.cs" />

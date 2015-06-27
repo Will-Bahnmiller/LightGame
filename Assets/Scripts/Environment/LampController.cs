@@ -3,11 +3,12 @@ using System.Collections;
 
 public class LampController : MonoBehaviour {
 
+	public GameObject trailLightPrefab, myDoor;
 	public float minIntensity, maxIntensity, health, restoreRate;
 	public float fadeRate, flickerFreq, flickerRate;
 
 	private Light myLight;
-	private bool isLit, flickering, fgrow;
+	private bool isLit, flickering, fgrow, hasSpawned;
 	private float myHealth, cooldown;
 
 
@@ -19,6 +20,7 @@ public class LampController : MonoBehaviour {
 		isLit = false;
 		flickering = false;
 		fgrow = false;
+		hasSpawned = false;
 		myHealth = health;
 		cooldown = 0f;
 	}
@@ -71,6 +73,12 @@ public class LampController : MonoBehaviour {
 		// Adjust light to match remaining health
 		if (!flickering) {
 			myLight.intensity = ((health - myHealth) / health) * (maxIntensity - minIntensity) + minIntensity;
+		}
+
+		if (isLit && !hasSpawned) {
+			GameObject t = Instantiate(trailLightPrefab, transform.position, Quaternion.identity) as GameObject;
+			t.SendMessage("SetTarget", myDoor);
+			hasSpawned = true;
 		}
 
 	} // end of Update()

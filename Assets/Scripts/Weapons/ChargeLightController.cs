@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ChargeLightController : MonoBehaviour {
 
-	public float missileSpeed, maxDist, minDamage, maxDamage, minSize, maxSize, chargeTime;
+	public float missileSpeed, maxDist, minDamage, maxDamage, minSize, maxSize, chargeTime, delayToCharge;
 	
 	private GameController gc;
 	private PositionTracker positionTracker;

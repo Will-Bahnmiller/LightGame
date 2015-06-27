@@ -49,6 +49,14 @@ public class ArmController : MonoBehaviour {
 				transform.rotation = Quaternion.Euler(new Vector3(Mathf.Atan2(Input.GetAxis("Y Axis Right"),
 			                                          Input.GetAxis ("X Axis Right")) * Mathf.Rad2Deg, 90f, 0f));
 			}
+			else {
+				if (transform.parent.GetComponent<PlayerController>().facingRight == true) {
+					transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+				}
+				else {
+					transform.rotation = Quaternion.Euler(180f, 90f, 0f);
+				}
+			}
 		}
 
 		// Weapon cooldown

@@ -46,10 +46,10 @@ public class PlayerController : MonoBehaviour {
 				else { inputSpeed = 0f; }
 			}
 			else {
-				if ( Mathf.Abs(Input.GetAxis("X Axis Left")) > .05f ) { inputSpeed = Input.GetAxis("X Axis Left"); }
+				if ( Mathf.Abs(Input.GetAxis("X Axis Left")) > 0.5f ) { inputSpeed = Input.GetAxis("X Axis Left"); }
 				else { inputSpeed = 0f; }
-				if (Input.GetAxis("X Axis Left") > 0f) { facingRight = true; }
-				if (Input.GetAxis("X Axis Left") < 0f) { facingRight = false; }
+				if (Input.GetAxis("X Axis Left") > 0.5f) { facingRight = true; }
+				if (Input.GetAxis("X Axis Left") < -0.5f) { facingRight = false; }
 			}
 			transform.Translate(Vector3.right * inputSpeed * moveSpeed * Time.deltaTime);
 

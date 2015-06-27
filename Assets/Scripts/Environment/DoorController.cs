@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DoorController : MonoBehaviour {
 
-	public GameObject doorLight, lampToOpen;
+	public GameObject doorLight;
 	public Vector3 pos1, pos2;
 	public bool isLocked;
 
@@ -47,19 +47,6 @@ public class DoorController : MonoBehaviour {
 
 
 	void Update () {
-
-		// Determine if locked or not
-		if (lampToOpen != null) {
-			if (lampToOpen.GetComponent<LampController>().isFullyLit()) {
-				isLocked = false;
-			}
-			else {
-				isLocked = true;
-			}
-		}
-		else  {
-			isLocked = false;
-		}
 
 		// Keep track of player position
 		playerPos = positionTracker.playerPosition;
@@ -154,7 +141,7 @@ public class DoorController : MonoBehaviour {
 			}
 
 			// Pause all objects
-			// Camera.main.GetComponent<GameController>().cutscene = true;
+			Camera.main.GetComponent<GameController>().cutscene = true;
 
 			// Open door
 			//Debug.Log ("opening door");
