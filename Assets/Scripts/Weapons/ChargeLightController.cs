@@ -3,7 +3,10 @@ using System.Collections;
 
 public class ChargeLightController : MonoBehaviour {
 
-	public float missileSpeed, maxDist, minDamage, maxDamage, minSize, maxSize, chargeTime, delayToCharge;
+	public GameObject particlePrefab;
+	public float missileSpeed, maxDist, minDamage, maxDamage,
+			     minSize, maxSize, chargeTime, delayToCharge,
+				 minParticleRate, maxParticleRate;
 	
 	private GameController gc;
 	private PositionTracker positionTracker;
@@ -11,7 +14,7 @@ public class ChargeLightController : MonoBehaviour {
 	private TrailRenderer tr;
 	private Vector3 direction, playerPos;
 	private bool isCharging;
-	private float currentDamage, timeAlive;
+	private float currentDamage, timeAlive, timeDelay, timer, chargeAngle, pRate;
 	
 	
 	void Start() {
@@ -20,11 +23,12 @@ public class ChargeLightController : MonoBehaviour {
 		gc = Camera.main.GetComponent<GameController>();
 		positionTracker = Camera.main.GetComponent<PositionTracker>();
 		myLight = transform.GetComponent<Light>();
+		myLight.range = minSize;
 		tr = transform.GetComponent<TrailRenderer>();
 		playerPos = positionTracker.playerPosition;
 		direction = positionTracker.mouseDirection;
 		isCharging = true;
-		timeAlive = 0f;
+		timeAlive = 0f;  timeDelay = 0f;  timer = 0f;  chargeAngle = 0f;  pRate = maxParticleRate;
 	}
 	
 	
@@ -32,27 +36,46 @@ public class ChargeLightController : MonoBehaviour {
 
 		// While holding fire button, charge up
 		if (isCharging) {
-			if ( (!gc.controllerScheme && Input.GetKey(KeyCode.Mouse0)) ||
-			      (gc.controllerScheme && Input.GetAxis("Right Trigger") < -0.5f)
-			    && positionTracker.player.GetComponent<PlayerController>().canMove) {
 
-				// Keep track of player and mouse positions
+			// Only begin charging after a small delay
+			if (timeDelay > delayToCharge) {
+
+				if ( (!gc.controllerScheme && Input.GetKey(KeyCode.Mouse0)) ||
+				      (gc.controllerScheme && Input.GetAxis("Right Trigger") < -0.5f)
+				    && positionTracker.player.GetComponent<PlayerController>().canMove) {
+
+					// Keep track of player and mouse positions
+					playerPos = positionTracker.playerPosition;
+					direction = positionTracker.mouseDirection;
+
+					// Increase damage, size by linear interpolation
+					currentDamage = minDamage + (maxDamage - minDamage) * (timeAlive / chargeTime);
+					myLight.range = minSize + (maxSize - minSize) * (timeAlive / chargeTime);
+					timeAlive = Mathf.Min (timeAlive + Time.deltaTime, chargeTime);
+
+					// Rotate to where mouse is facing
+					transform.position = playerPos + ( 1.5f * direction );
+
+					// Keep spawning charge particles while charging
+					timer += Time.deltaTime;
+					if (timer >= pRate) {
+						timer = 0f;
+						spawnParticle();
+					}
+					pRate = maxParticleRate - (maxParticleRate - minParticleRate) * (timeAlive / chargeTime);
+				}
+
+				// On release, stop charging
+				else {
+					isCharging = false;
+					tr.enabled = true;
+				}
+			}
+			else {
+				timeDelay += Time.deltaTime;
 				playerPos = positionTracker.playerPosition;
 				direction = positionTracker.mouseDirection;
-
-				// Increase damage, size by linear interpolation
-				currentDamage = minDamage + (maxDamage - minDamage) * (timeAlive / chargeTime);
-				myLight.range = minSize + (maxSize - minSize) * (timeAlive / chargeTime);
-				timeAlive = Mathf.Min (timeAlive + Time.deltaTime, chargeTime);
-
-				// Rotate to where mouse is facing
 				transform.position = playerPos + ( 1.5f * direction );
-			}
-
-			// On release, stop charging
-			else {
-				isCharging = false;
-				tr.enabled = true;
 			}
 		}
 
@@ -73,7 +96,25 @@ public class ChargeLightController : MonoBehaviour {
 		}
 
 	} // end of Update()
-	
+
+
+	void spawnParticle() {
+
+		Vector3 pos = transform.position;
+		float scale = 1.2f;
+
+		// Determine spawn location of particle
+		pos += Quaternion.Euler(0f, 0f, chargeAngle) * Vector3.right * scale;
+
+		// Update position angle
+		chargeAngle = (chargeAngle + 112.5f + Random.Range(-10f, 10f)) % 360f;
+
+		// Spawn the particle
+		GameObject p;
+		p = Instantiate(particlePrefab, pos, Quaternion.identity) as GameObject;
+		p.transform.parent = transform;
+	}
+
 	
 	void OnCollisionEnter(Collision coll) {
 		
