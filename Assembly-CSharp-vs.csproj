@@ -68,6 +68,8 @@
      <Compile Include="Assets\Scripts\Weapons\FreezeLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FreezeLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FreezeParticleController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\HelixLightController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\HelixLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ReboundLightController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>

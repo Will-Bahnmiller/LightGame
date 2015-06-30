@@ -30,16 +30,16 @@ public class DoorController : MonoBehaviour {
 			                       Quaternion.identity) as GameObject;
 			myLight2 = Instantiate(doorLight, new Vector3(transform.position.x, transform.position.y - 1f, 0.7f),
 			                       Quaternion.identity) as GameObject;
-			pos1 = transform.position + Vector3.up * 2.5f;
-			pos2 = transform.position + Vector3.down * 2.5f;
+			pos1 = transform.position + Vector3.up * 3f;
+			pos2 = transform.position + Vector3.down * 3f;
 		}
 		else {
 			myLight1 = Instantiate(doorLight, new Vector3(transform.position.x + 1f, transform.position.y, 0.7f),
 			                       Quaternion.identity) as GameObject;
 			myLight2 = Instantiate(doorLight, new Vector3(transform.position.x - 1f, transform.position.y, 0.7f),
 			                       Quaternion.identity) as GameObject;
-			pos1 = transform.position + Vector3.right * 2.5f;
-			pos2 = transform.position + Vector3.left * 2.5f;
+			pos1 = transform.position + Vector3.right * 3f;
+			pos2 = transform.position + Vector3.left * 3f;
 		}
 		myLight1.transform.parent = transform;
 		myLight2.transform.parent = transform;
