@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Environment\TrailLightController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\GameController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\PositionTracker.cs" />
+     <Compile Include="Assets\Scripts\Game Logic\WeaponSelectorController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ArmController.cs" />
      <Compile Include="Assets\Scripts\Weapons\BasicLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\BeamLightController.cs" />

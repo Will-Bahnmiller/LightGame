@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game Logic\GameController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Game Logic\WeaponSelectorController.cs" Line="87" Column="22" />
+      <File FileName="Assets\Scripts\Game Logic\GameController.cs" Line="56" Column="40" />
+      <File FileName="Assets\Scripts\Actors\PlayerController.cs" Line="23" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -38,9 +38,7 @@ public class ChargeLightParticleController : MonoBehaviour {
 	private bool playerIsCharging() {
 
 		// Charging conditions
-		if ((!gc.controllerScheme && Input.GetKey(KeyCode.Mouse0)) ||
-		    (gc.controllerScheme && Input.GetAxis("Right Trigger") < -0.5f)
-		    && pt.player.GetComponent<PlayerController>().canMove) {
+		if (gc.shootWeapon && pt.player.GetComponent<PlayerController>().canMove) {
 			return true;
 		}
 

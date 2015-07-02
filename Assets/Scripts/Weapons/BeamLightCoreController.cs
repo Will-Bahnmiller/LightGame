@@ -55,13 +55,11 @@ public class BeamLightCoreController : MonoBehaviour {
 
 		
 		// If player lets go of mouse, kill it
-		if (!gc.controllerScheme && Input.GetKeyUp(KeyCode.Mouse0)) {
+		if ( !gc.shootWeapon ) {
 			Destroy(transform.gameObject);
 		}
-		if (gc.controllerScheme && Input.GetAxis("Right Trigger") >= -0.5f) {
-			Destroy(transform.gameObject);
-		}
-	}
+	
+	} // end of Update()
 
 } // end of BeamLightCoreController.cs
 

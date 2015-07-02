@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 	private GameController gc;
 	private PositionTracker positionTracker;
 	private GameObject doorGoingThrough;
-	private float inputSpeed, normalSpeed;
+	private float inputSpeed, mySpeed;
 	private bool isJumping;
 	private Vector3 temp, mousePos;
 
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 		// Initialize data
 		doorUp = false;  doorDown = false;  doorRight = false;  doorLeft = false;
 		canMove = true;  isJumping = true;  facingRight = true;
-		normalSpeed = moveSpeed;
+		mySpeed = moveSpeed;
 
 		// Once player is loaded, enable tracking of player
 		gc = Camera.main.GetComponent<GameController>();
@@ -41,40 +41,26 @@ public class PlayerController : MonoBehaviour {
 
 			// Player movement
 			if (!gc.controllerScheme) {
-				if (Input.GetKey(KeyCode.A) && !Input.GetKeyDown(KeyCode.D)) { inputSpeed = -1f;  facingRight = true; }
-				else if (Input.GetKey(KeyCode.D) && !Input.GetKeyDown(KeyCode.A)) { inputSpeed = 1f;  facingRight = false; }
-				else { inputSpeed = 0f; }
+				if      ( gc.moveLeft )  { inputSpeed = -1f;  facingRight = true; }
+				else if ( gc.moveRight ) { inputSpeed = 1f;  facingRight = false; }
+				else                     { inputSpeed = 0f; }
 			}
 			else {
-				if ( Mathf.Abs(Input.GetAxis("X Axis Left")) > 0.5f ) { inputSpeed = Input.GetAxis("X Axis Left"); }
-				else { inputSpeed = 0f; }
-				if (Input.GetAxis("X Axis Left") > 0.5f) { facingRight = true; }
-				if (Input.GetAxis("X Axis Left") < -0.5f) { facingRight = false; }
+				if ( Mathf.Abs(gc.leftAnalogX) > 0.5f ) { inputSpeed = gc.leftAnalogX; }
+				else                                    { inputSpeed = 0f; }
+				if (gc.leftAnalogX > 0.5f)  { facingRight = true; }
+				if (gc.leftAnalogX < -0.5f) { facingRight = false; }
 			}
-			transform.Translate(Vector3.right * inputSpeed * moveSpeed * Time.deltaTime);
+			transform.Translate(Vector3.right * inputSpeed * mySpeed * Time.deltaTime);
 
 			// Crouch
-			if (!gc.controllerScheme) {
-				if (Input.GetKeyDown(KeyCode.LeftShift)) { moveSpeed *= 0.5f; }
-				if (Input.GetKeyUp(KeyCode.LeftShift)) { moveSpeed *= 2f; }
-			}
-			else {
-				if (Input.GetKeyDown(KeyCode.JoystickButton2)) {
-					if (moveSpeed == normalSpeed) { moveSpeed *= 0.5f; }
-					else 						  { moveSpeed *= 2f; }
-				}
-			}
+			if ( gc.crouch ) { mySpeed = moveSpeed / 2f; }
+			else 			 { mySpeed = moveSpeed; }
+
 
 			// Jump if on ground
-			if (!gc.controllerScheme) {
-				if ( Input.GetKeyDown(KeyCode.Space) && !isJumping ) {
-					rigidbody.AddForce(new Vector2(0f, jumpHeight), ForceMode.Impulse);
-				}
-			}
-			else {
-				if ( Input.GetKeyDown(KeyCode.JoystickButton0) && !isJumping ) {
-					rigidbody.AddForce(new Vector2(0f, jumpHeight), ForceMode.Impulse);
-				}
+			if ( gc.jump && !isJumping ) {
+				rigidbody.AddForce(new Vector2(0f, jumpHeight), ForceMode.Impulse);
 			}
 		
 		} // end of if(canMove)

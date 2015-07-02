@@ -40,9 +40,7 @@ public class ChargeLightController : MonoBehaviour {
 			// Only begin charging after a small delay
 			if (timeDelay > delayToCharge) {
 
-				if ( (!gc.controllerScheme && Input.GetKey(KeyCode.Mouse0)) ||
-				      (gc.controllerScheme && Input.GetAxis("Right Trigger") < -0.5f)
-				    && positionTracker.player.GetComponent<PlayerController>().canMove) {
+				if ( gc.shootWeapon && positionTracker.player.GetComponent<PlayerController>().canMove) {
 
 					// Keep track of player and mouse positions
 					playerPos = positionTracker.playerPosition;

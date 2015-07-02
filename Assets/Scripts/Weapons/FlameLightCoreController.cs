@@ -36,10 +36,7 @@ public class FlameLightCoreController : MonoBehaviour {
 		}
 
 		// If player lets go of mouse, kill it
-		if (!gc.controllerScheme && Input.GetKeyUp(KeyCode.Mouse0)) {
-			Destroy(transform.gameObject);
-		}
-		if (gc.controllerScheme && Input.GetAxis("Right Trigger") >= -0.5f) {
+		if ( !gc.shootWeapon ) {
 			Destroy(transform.gameObject);
 		}
 

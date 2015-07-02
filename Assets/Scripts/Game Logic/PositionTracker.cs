@@ -27,8 +27,8 @@ public class PositionTracker : MonoBehaviour {
 		                            	 Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0f);
 		}
 		else {
-			if (Mathf.Abs(Input.GetAxis("X Axis Right")) > .1f || Mathf.Abs(Input.GetAxis("Y Axis Right")) > .1f) {
-				mousePosition = playerPosition + new Vector3(Input.GetAxis("X Axis Right"), -Input.GetAxis ("Y Axis Right"), 0f);
+			if (Mathf.Abs(gc.rightAnalogX) > .1f || Mathf.Abs(gc.rightAnalogY) > .1f) {
+				mousePosition = playerPosition + new Vector3(gc.rightAnalogX, -gc.rightAnalogY, 0f);
 			}
 			else {
 				if (player.GetComponent<PlayerController>().facingRight == true) {
