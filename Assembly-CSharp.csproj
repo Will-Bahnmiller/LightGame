@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\Weapons\BubbleLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ChargeLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ChargeLightParticleController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\FireworkLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FlameLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FlameLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FreezeLightController.cs" />
@@ -72,6 +73,8 @@
      <Compile Include="Assets\Scripts\Weapons\HelixLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\HelixLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ReboundLightController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\WeaponCharger.cs" />
+     <Compile Include="Assets\Scripts\Weapons\WeaponPersister.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
  </Reference>

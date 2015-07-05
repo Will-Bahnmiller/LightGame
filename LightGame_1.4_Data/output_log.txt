@@ -1,0 +1,39 @@
+Initialize engine version: 4.6.3f1 (4753d8b6ef2b)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 525M (ID=0xdf5)
+    Vendor:   NVIDIA
+    VRAM:     979 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.070 seconds
+desktop: 1366x768 60Hz; virtual: 4098x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Will\Documents\Unity Projects\LightGame\LightGame_1.4_Data\Managed\System.Core.dll (this message is harmless)
+Basic collided with Floor
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Basic collided with Floor
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Basic collided with Floor
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Basic collided with Floor
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Basic collided with Wall
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+

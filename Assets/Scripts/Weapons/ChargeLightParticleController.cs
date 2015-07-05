@@ -28,7 +28,7 @@ public class ChargeLightParticleController : MonoBehaviour {
 
 		// Determine if reached destination or not charging anymore
 		dist = Vector3.Distance(transform.position, parentPos);
-		if ( dist < 0.1f || !playerIsCharging() ) {
+		if ( dist < 0.5f || !playerIsCharging() ) {
 			Destroy(gameObject);
 		}
 

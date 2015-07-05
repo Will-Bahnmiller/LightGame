@@ -19,8 +19,8 @@ public class HelixLightController : MonoBehaviour {
 		outDir = Vector3.Cross(Vector3.forward, direction).normalized * radius;
 		hasCollided = false;
 		timer = 0f;
-		if (order == 1) { angle = 90f; }
-		else 			{ angle = 270f; }
+		if (order == 1) { angle = 90f;  transform.GetComponent<Light>().color = new Color(1f, 1f, 200f/256f); }
+		else 			{ angle = 270f; transform.GetComponent<Light>().color = new Color(200f/256f, 1f, 1f); }
 	}
 
 
