@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ChargeLightController : MonoBehaviour {
 
-	public GameObject particlePrefab;
 	public float missileSpeed, maxDist;
 
 	private PositionTracker positionTracker;

@@ -8,6 +8,7 @@ public class WeaponCharger : MonoBehaviour {
 	public Color fullyChargedColor;
 	public float minDamage, maxDamage, minSize, maxSize, chargeTime, delayToCharge,
 				 minParticleRate, maxParticleRate;
+	public bool enableTrail;
 	
 	private GameController gc;
 	private PositionTracker positionTracker;
@@ -71,7 +72,7 @@ public class WeaponCharger : MonoBehaviour {
 			// On release, stop charging
 			else {
 				isCharging = false;
-				tr.enabled = true;
+				tr.enabled = enableTrail;
 				gameObject.SendMessage("ChargingStatus", false);
 				gameObject.SendMessage("SetDirection", direction);
 				gameObject.GetComponent<SphereCollider>().enabled = true;
