@@ -30,7 +30,8 @@ public class WeaponCharger : MonoBehaviour {
 		playerPos = positionTracker.playerPosition;
 		direction = positionTracker.mouseDirection;
 		isCharging = true;
-		timeAlive = 0f;  timeDelay = 0f;  timer = 0f;  chargeAngle = 0f;  pRate = maxParticleRate;
+		timeAlive = 0f;  timeDelay = 0f;  timer = 0f;  chargeAngle = 0f;
+		currentDamage = minDamage;  pRate = maxParticleRate;
 	}
 	
 	
@@ -73,6 +74,7 @@ public class WeaponCharger : MonoBehaviour {
 			else {
 				isCharging = false;
 				tr.enabled = enableTrail;
+				gameObject.SendMessage("PercentCharged", currentDamage/maxDamage);
 				gameObject.SendMessage("ChargingStatus", false);
 				gameObject.SendMessage("SetDirection", direction);
 				gameObject.GetComponent<SphereCollider>().enabled = true;
@@ -109,7 +111,7 @@ public class WeaponCharger : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision coll) {
 		
-		Debug.Log(transform.name + " collided with " + coll.transform.name);
+		Debug.Log(transform.name + " collided with " + coll.transform.name + ", damage = " + currentDamage);
 		
 		// Only consider collisions if not charging
 		if (!isCharging) {

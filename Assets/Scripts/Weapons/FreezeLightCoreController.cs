@@ -5,10 +5,11 @@ public class FreezeLightCoreController : MonoBehaviour {
 
 	public GameObject particlePrefab, childPrefab;
 	public float missileSpeed, maxDist, spinRate, particleRate;
+	public int minChildren, maxChildren;
 
 	private PositionTracker positionTracker;
 	private Vector3 direction, playerPos;
-	private float angle, timer;
+	private float angle, timer, chargePercent;
 	private bool isCharging, isFullyCharged, hasCollided, hasSpawned;
 
 
@@ -31,8 +32,9 @@ public class FreezeLightCoreController : MonoBehaviour {
 			// Spawn children if not already done so
 			if (!hasSpawned) {
 				hasSpawned = true;
-				for (int i = 0; i < 8; i++) {
-					Vector3 childPos = transform.position + Quaternion.Euler(0f, 0f, i * 45f) * Vector3.up * 0.7f;
+				int childCount = minChildren + Mathf.FloorToInt((maxChildren - minChildren) * chargePercent);
+				for (int i = 0; i < childCount; i++) {
+					Vector3 childPos = transform.position + Quaternion.Euler(0f, 0f, i * 360f / childCount) * Vector3.up * 0.7f;
 					GameObject c = Instantiate(childPrefab, childPos, Quaternion.identity) as GameObject;
 					c.transform.parent = transform;
 				}
@@ -79,7 +81,8 @@ public class FreezeLightCoreController : MonoBehaviour {
 		
 	}
 	
-	
+
+	void PercentCharged(float p) {  chargePercent = p;  }
 	void ChargingStatus(bool s) {  isCharging = s;  }
 	void SetDirection(Vector3 d) {  direction = d;  }
 	void SetFullyCharged(bool c) {  isFullyCharged = true;  }

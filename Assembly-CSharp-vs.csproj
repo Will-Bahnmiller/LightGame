@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Environment\LampController.cs" />
      <Compile Include="Assets\Scripts\Environment\SignalLightController.cs" />
      <Compile Include="Assets\Scripts\Environment\TrailLightController.cs" />
+     <Compile Include="Assets\Scripts\Game Logic\CleanUp.cs" />
      <Compile Include="Assets\Scripts\Game Logic\GameController.cs" />
      <Compile Include="Assets\Scripts\Game Logic\PositionTracker.cs" />
      <Compile Include="Assets\Scripts\Game Logic\WeaponSelectorController.cs" />
@@ -64,6 +65,7 @@
      <Compile Include="Assets\Scripts\Weapons\BubbleLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ChargeLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ChargeLightParticleController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\FireworkLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FireworkLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FlameLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\FlameLightCoreController.cs" />

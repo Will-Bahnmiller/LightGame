@@ -1,4 +1,4 @@
-Controls for "Light Game" as of 6/8/2015:
+Controls for "Light Game" as of 7/6/2015:
 
 (The game is best played at Simple quality or lower!)
 
@@ -16,7 +16,7 @@ Space Bar		= Jump
 
 Left Shift (hold)	= Walk
 
-E			= Switch active weapon
+E (hold)		= Switch active weapon
 
 F 			= Turn flashlight on/off
 
@@ -30,10 +30,10 @@ Right Trigger	 	= Shoot active weapon
 
 Left Analog Stick	= Player movement
 
-A	 		= Jump
+Left Bumper / A		= Jump
 
-X			= Toggle walking/running
+Left Analog (press)	= Toggle walking/running
 
-B			= Switch active weapon
+Right Bumper (hold)	= Switch active weapon
 
 Y 			= Turn flashlight on/off

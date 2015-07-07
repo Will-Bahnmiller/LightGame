@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HelixLightController : MonoBehaviour {
 
+	public Color color1, color2;
 	public float freq, damage;
 
 	private GameController gc;
@@ -19,8 +20,8 @@ public class HelixLightController : MonoBehaviour {
 		outDir = Vector3.Cross(Vector3.forward, direction).normalized * radius;
 		hasCollided = false;
 		timer = 0f;
-		if (order == 1) { angle = 90f;  transform.GetComponent<Light>().color = new Color(1f, 1f, 200f/256f); }
-		else 			{ angle = 270f; transform.GetComponent<Light>().color = new Color(200f/256f, 1f, 1f); }
+		if (order == 1) { angle = 90f;  transform.GetComponent<Light>().color = color1; }
+		else 			{ angle = 270f; transform.GetComponent<Light>().color = color2; }
 	}
 
 
@@ -31,11 +32,12 @@ public class HelixLightController : MonoBehaviour {
 
 			// Determine how to move based on child order number
 			if (order == 1) {  angle = (angle + freq * Time.deltaTime) % 360f;  }
-			else {  angle = (angle - freq * Time.deltaTime) % 360f;  }
+			else 			{  angle = (angle - freq * Time.deltaTime) % 360f;  }
 
 			// Move
 			transform.position = transform.parent.transform.position
 								 + (outDir * Mathf.Sin(angle * Mathf.Deg2Rad));
+
 		}
 
 		// When collided, wait for trail

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
 	public int currentWeapon;
 
 
+
 	void Start () {
 
 		// Initialize data
@@ -76,15 +77,16 @@ public class GameController : MonoBehaviour {
 			else 				        { moveRight = false; }
 
 			// Crouch
-			if ( Input.GetKeyDown(KeyCode.JoystickButton2) ) { crouch = !crouch; }
+			if ( Input.GetKeyDown(KeyCode.JoystickButton8) ) { crouch = !crouch; }
 
 			// Jump
-			if ( Input.GetKeyDown(KeyCode.JoystickButton0) ) { jump = true; }
-			else 											 { jump = false; }
+			if 		( Input.GetKeyDown(KeyCode.JoystickButton4) ) { jump = true; }
+			else if ( Input.GetKeyDown(KeyCode.JoystickButton0) ) { jump = true; }
+			else 											      { jump = false; }
 
 			// Weapon select
-			if ( Input.GetKeyDown(KeyCode.JoystickButton1) ) { weaponSelect = true; }
-			if ( Input.GetKeyUp(KeyCode.JoystickButton1) )   { weaponSelect = false; }
+			if ( Input.GetKeyDown(KeyCode.JoystickButton5) ) { weaponSelect = true; }
+			if ( Input.GetKeyUp(KeyCode.JoystickButton5) )   { weaponSelect = false; }
 
 			// Shoot active weapon
 			if ( triggerRight < -0.5f ) { shootWeapon = true; }

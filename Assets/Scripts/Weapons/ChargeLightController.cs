@@ -3,10 +3,11 @@ using System.Collections;
 
 public class ChargeLightController : MonoBehaviour {
 
-	public float missileSpeed, maxDist;
+	public float minSpeed, maxSpeed, maxDist;
 
 	private PositionTracker positionTracker;
 	private Vector3 direction, playerPos;
+	private float chargePercent, mySpeed;
 	private bool isCharging, isFullyCharged, hasCollided;
 	
 	
@@ -24,7 +25,8 @@ public class ChargeLightController : MonoBehaviour {
 		// No longer charging so start moving
 		if (!isCharging && !hasCollided) {
 
-			transform.Translate(direction * missileSpeed * Time.deltaTime);
+			mySpeed = minSpeed + Mathf.Floor((maxSpeed - minSpeed) * chargePercent);
+			transform.Translate(direction * mySpeed * Time.deltaTime);
 
 			// If missile travels a certain distance, kill it
 			playerPos = positionTracker.playerPosition;
@@ -46,7 +48,8 @@ public class ChargeLightController : MonoBehaviour {
 
 	}
 	
-
+	
+	void PercentCharged(float p) {  chargePercent = p;  }
 	void ChargingStatus(bool s) {  isCharging = s;  }
 	void SetDirection(Vector3 d) {  direction = d;  }
 	void SetFullyCharged(bool c) {  isFullyCharged = true;  }
