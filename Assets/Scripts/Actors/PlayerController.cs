@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	
-	public float jumpHeight, moveSpeed;
+	public float jumpHeight, moveSpeed, warpSpeed;
 	public bool canMove, hasMouseLight, facingRight;
 	public bool doorUp, doorDown, doorRight, doorLeft;
 
@@ -11,15 +11,15 @@ public class PlayerController : MonoBehaviour {
 	private PositionTracker positionTracker;
 	private GameObject doorGoingThrough;
 	private float inputSpeed, mySpeed;
-	private bool isJumping;
-	private Vector3 temp, mousePos;
+	private bool isJumping, isWarping;
+	private Vector3 temp, mousePos, warpPos;
 
 
 	void Start() {
 
 		// Initialize data
 		doorUp = false;  doorDown = false;  doorRight = false;  doorLeft = false;
-		canMove = true;  isJumping = true;  facingRight = true;
+		canMove = true;  isJumping = true;  isWarping = false;  facingRight = true;
 		mySpeed = moveSpeed;
 
 		// Once player is loaded, enable tracking of player
@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour {
 
 		// Allow player movement at the start
 		if (Vector3.Distance(transform.position, Vector3.zero) < 2f) {
+			canMove = true;
+		}
+
+		// Check for movement
+		if (!isWarping && !(doorUp || doorDown || doorLeft || doorRight)) {
 			canMove = true;
 		}
 
@@ -110,7 +115,51 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		// Warping
+		if (isWarping) { Warp(); }
+
 	} // end of Update() 
+
+
+	void BeginWarp(Vector3 pos) {
+
+		// Set flags to begin warping
+		if (!isWarping) {
+			rigidbody.detectCollisions = true;
+			rigidbody.useGravity = false;
+			isWarping = true;
+			canMove = false;
+			warpPos = pos;
+			gameObject.layer = LayerMask.NameToLayer("Light Form");
+			gameObject.GetComponent<MeshRenderer>().enabled = false;
+			gameObject.GetComponent<Light>().enabled = true;
+		}
+	}
+
+
+	void EndWarp() {
+
+		// Set flags to stop warping
+		if (isWarping) {
+			rigidbody.useGravity = true;
+			isWarping = false;
+			canMove = true;
+			gameObject.layer = LayerMask.NameToLayer("Player");
+			gameObject.GetComponent<MeshRenderer>().enabled = true;
+			gameObject.GetComponent<Light>().enabled = false;
+		}
+	}
+
+
+	void Warp() {
+		// Warp movement
+		if ( Vector3.Distance(transform.position, warpPos) > 0.5f ) {
+			transform.Translate( (warpPos - transform.position).normalized  * warpSpeed * Time.deltaTime);
+		}
+
+		// Reached warp position
+		else { EndWarp(); }
+	}
 
 
 	void OnCollisionStay(Collision collisionInfo) {
@@ -119,16 +168,23 @@ public class PlayerController : MonoBehaviour {
 		if (collisionInfo.gameObject.tag == "Floor") {
 			isJumping = false;
 		}
+
+		// Cancel warping on collision
+		if (isWarping) { EndWarp(); }
 	}
 
 
 	void OnCollisionEnter(Collision collisionInfo) {
 
 		// Track which door player is about to go through
+		//Debug.Log ("player collided with " + collisionInfo.transform.name);
 		if (collisionInfo.gameObject.tag == "UpDownDoor" ||
 		    collisionInfo.gameObject.tag == "LeftRightDoor") {
 			doorGoingThrough = collisionInfo.gameObject;
 		}
+
+		// Cancel warping on collision
+		if (isWarping) { EndWarp();  }
 	}
 
 

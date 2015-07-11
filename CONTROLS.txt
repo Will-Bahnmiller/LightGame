@@ -1,6 +1,6 @@
-Controls for "Light Game" as of 7/6/2015:
+Controls for "Light Game" as of 7/10/2015:
 
-(The game is best played at Simple quality or lower!)
+(The game is best played at Good quality or lower!)
 
 
 Keyboard + Mouse
@@ -8,7 +8,9 @@ Keyboard + Mouse
 
 Mouse 			= Look around
 
-Right Mouse Click 	= Shoot active weapon
+Left Mouse Click 	= Shoot active weapon
+
+Right Mouse Click	= Shoot/Go to warp light
 
 WASD 			= Player movement
 
@@ -28,12 +30,14 @@ Right Analog Stick	= Look around
 
 Right Trigger	 	= Shoot active weapon
 
+Right Bumper		= Shoot/Go to warp light
+
 Left Analog Stick	= Player movement
 
 Left Bumper / A		= Jump
 
 Left Analog (press)	= Toggle walking/running
 
-Right Bumper (hold)	= Switch active weapon
+Left Trigger (hold)	= Switch active weapon
 
 Y 			= Turn flashlight on/off

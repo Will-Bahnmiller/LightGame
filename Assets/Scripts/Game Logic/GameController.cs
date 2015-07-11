@@ -5,10 +5,9 @@ public class GameController : MonoBehaviour {
 	
 	public bool cutscene, controllerScheme;
 	public bool moveLeft, moveRight, crouch, jump;
-	public bool weaponSelect, shootWeapon, flashlight;
-	public float leftAnalogX, leftAnalogY, rightAnalogX, rightAnalogY, triggerRight;
+	public bool weaponSelect, shootWeapon, flashlight, warpLight;
+	public float leftAnalogX, leftAnalogY, rightAnalogX, rightAnalogY, triggerRight, triggerLeft;
 	public int currentWeapon;
-
 
 
 	void Start () {
@@ -56,6 +55,10 @@ public class GameController : MonoBehaviour {
 			// Flashlight
 			if ( Input.GetKeyDown(KeyCode.F) ) { flashlight = !flashlight; }
 
+			// Warp light
+			if ( Input.GetKeyDown(KeyCode.Mouse1) ) { warpLight = true; }
+			else 									{ warpLight = false; }
+
 		} // end of keyboard input
 
 		// Check for controller input
@@ -67,6 +70,7 @@ public class GameController : MonoBehaviour {
 			rightAnalogX = Input.GetAxis("X Axis Right");
 			rightAnalogY = Input.GetAxis("Y Axis Right");
 			triggerRight = Input.GetAxis("Right Trigger");
+			triggerLeft = Input.GetAxis("Left Trigger");
 
 			// Move left
 			if ( leftAnalogX >= 0.5f ) { moveLeft = true; }
@@ -85,8 +89,8 @@ public class GameController : MonoBehaviour {
 			else 											      { jump = false; }
 
 			// Weapon select
-			if ( Input.GetKeyDown(KeyCode.JoystickButton5) ) { weaponSelect = true; }
-			if ( Input.GetKeyUp(KeyCode.JoystickButton5) )   { weaponSelect = false; }
+			if ( triggerLeft < -0.5f ) { weaponSelect = true; }
+			else  					   { weaponSelect = false; }
 
 			// Shoot active weapon
 			if ( triggerRight < -0.5f ) { shootWeapon = true; }
@@ -94,6 +98,10 @@ public class GameController : MonoBehaviour {
 
 			// Flashlight
 			if ( Input.GetKeyDown(KeyCode.JoystickButton3) ) { flashlight = !flashlight; }
+
+			// Warp light
+			if ( Input.GetKeyDown(KeyCode.JoystickButton5) ) { warpLight = true; }
+			else 									  		 { warpLight = false; }
 
 		} // end of controller input
 	

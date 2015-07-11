@@ -41,7 +41,7 @@ public class WeaponCharger : MonoBehaviour {
 		if (isCharging) {
 				
 			// Charge conditions
-			if ( gc.shootWeapon && positionTracker.player.GetComponent<PlayerController>().canMove) {
+			if ( gc.shootWeapon && positionTracker.player.GetComponent<PlayerController>().canMove ) {
 					
 				// Rotate to where mouse is facing
 				playerPos = positionTracker.playerPosition;

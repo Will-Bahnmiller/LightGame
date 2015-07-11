@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Weapons\HelixLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\HelixLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ReboundLightController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\WarpLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponCharger.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponPersister.cs" />
  <Reference Include="UnityEngine.UI">
