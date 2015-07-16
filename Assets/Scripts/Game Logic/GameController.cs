@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour {
 
 
 	public bool canTakeDamage(string tag) {
-		if (tag == "Lamp") {
+		if (tag == "Lamp" || tag == "Enemy") {
 			return true;
 		}
 		return false;

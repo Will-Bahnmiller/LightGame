@@ -65,7 +65,7 @@ public class WeaponSelectorController : MonoBehaviour {
 			// Enable light of closest selection
 			foreach (GameObject w in selections) {
 				if (int.Parse(w.transform.name) != tempSelection) {
-					w.GetComponent<SpriteRenderer>().color = Color.black;
+					w.GetComponent<SpriteRenderer>().color = Color.gray;
 				}
 				else {
 					w.GetComponent<SpriteRenderer>().color = Color.white;

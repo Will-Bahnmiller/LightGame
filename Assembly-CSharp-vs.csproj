@@ -46,6 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Actors\CrawlEnemyController.cs" />
+     <Compile Include="Assets\Scripts\Actors\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\Actors\InvulnerabilityFlashing.cs" />
      <Compile Include="Assets\Scripts\Actors\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Environment\CameraController.cs" />
      <Compile Include="Assets\Scripts\Environment\DoorController.cs" />
@@ -76,6 +79,8 @@
      <Compile Include="Assets\Scripts\Weapons\HelixLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\ReboundLightController.cs" />
      <Compile Include="Assets\Scripts\Weapons\WarpLightController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\WaveLightController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\WaveLightCoreController.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponCharger.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponPersister.cs" />
  <Reference Include="UnityEngine.UI">

@@ -3,24 +3,25 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	
-	public float jumpHeight, moveSpeed, warpSpeed;
+	public float jumpHeight, moveSpeed, warpSpeed, health;
 	public bool canMove, hasMouseLight, facingRight;
 	public bool doorUp, doorDown, doorRight, doorLeft;
 
 	private GameController gc;
 	private PositionTracker positionTracker;
 	private GameObject doorGoingThrough;
-	private float inputSpeed, mySpeed;
-	private bool isJumping, isWarping;
-	private Vector3 temp, mousePos, warpPos;
+	private float inputSpeed, mySpeed, myHealth, invulnTimer;
+	private bool isJumping, isWarping, isInvuln;
+	private Vector3 temp, mousePos, warpPos, enemyDir;
 
 
 	void Start() {
 
 		// Initialize data
+		myHealth = health;
 		doorUp = false;  doorDown = false;  doorRight = false;  doorLeft = false;
-		canMove = true;  isJumping = true;  isWarping = false;  facingRight = true;
-		mySpeed = moveSpeed;
+		canMove = true;  isJumping = true;  isWarping = false;  facingRight = true;  isInvuln = false;
+		mySpeed = moveSpeed;  invulnTimer = 0f;
 
 		// Once player is loaded, enable tracking of player
 		gc = Camera.main.GetComponent<GameController>();
@@ -118,6 +119,17 @@ public class PlayerController : MonoBehaviour {
 		// Warping
 		if (isWarping) { Warp(); }
 
+		// Invulnerability
+		if (isInvuln) {
+			invulnTimer = Mathf.Max(0f, invulnTimer - Time.deltaTime);
+			gameObject.GetComponent<InvulnerabilityFlashing>().enabled = true;
+		}
+		else {
+			gameObject.GetComponent<InvulnerabilityFlashing>().enabled = false;
+			renderer.enabled = true;
+		}
+		if (invulnTimer == 0f) { isInvuln = false; }
+
 	} // end of Update() 
 
 
@@ -183,6 +195,11 @@ public class PlayerController : MonoBehaviour {
 			doorGoingThrough = collisionInfo.gameObject;
 		}
 
+		// Track direction of enemy collision
+		if (collisionInfo.gameObject.tag == "Enemy") {
+			enemyDir = transform.position - collisionInfo.contacts[0].point;
+		}
+
 		// Cancel warping on collision
 		if (isWarping) { EndWarp();  }
 	}
@@ -193,6 +210,30 @@ public class PlayerController : MonoBehaviour {
 		// Track when leaving the ground
 		if (collisionInfo.gameObject.tag == "Floor") {
 			isJumping = true;
+		}
+	}
+
+
+	void TakeDamage(float damage) {
+
+		// Only take damage if not invulnerable
+		if (!isInvuln) {
+			Debug.Log("player taking damage: " + damage);
+			invulnTimer = 1f;
+			isInvuln = true;
+
+			// Receive damage
+			myHealth = Mathf.Max (0f, myHealth - damage);
+
+			// Jump backwards
+			rigidbody.velocity = Vector3.zero;
+			rigidbody.angularVelocity = Vector3.zero;
+			rigidbody.AddForce(enemyDir.normalized * 5f, ForceMode.Impulse);
+		}
+
+		// No health left
+		if (myHealth == 0f) {
+			// play death animation, which gameovers when done
 		}
 	}
 
